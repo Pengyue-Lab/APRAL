@@ -1,0 +1,10 @@
+runtime: python38
+
+
+env_variables:
+  MYSQL_USER: 'root'
+  MYSQL_PASSWORD: 'cs411-pt1-apral'
+  MYSQL_DB: 'APRAL'
+  MYSQL_HOST: '35.223.48.68'
+
+  
