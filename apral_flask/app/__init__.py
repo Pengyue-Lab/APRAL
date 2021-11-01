@@ -43,12 +43,34 @@ def init_connection_engine():
 
 db = init_connection_engine()
 
-conn = db.connect()
-result  = conn.execute("SELECT * FROM APRAL.Game where Genre = 'Action';").fetchall()
-print(result[0])
-conn.close()
+# fullname = 'Atari 2600_'
+# initial = '2600_'
+# conn = db.connect()
+# query = 'Update Platform set FullName = "{}" where Initial = "{}";'.format(fullname, initial)
+# conn.execute(query)
+# conn.close()
+
+
+# conn = db.connect()
+# query = 'Insert into Game values("{}",{},"{}","{}",{},{},{},{},{},{},"{}","{}")'.format('A',1234,'Action','Acquire',1,2,3,4,5,6,'1-Up Studio','E10+')
+# conn.execute(query)
+# conn.close()
+
+
+
+# conn = db.connect()
+# userId = 'Alia39'
+# query = 'Delete from User where UserId = "{}";'.format(userId)
+# conn.execute(query)
+# conn.close()
+
+# conn = db.connect()
+# query_results = conn.execute("(Select DevName as Name,count(*) as Num From Game natural join Play natural join User where Gender = 'FeMale' Group by DevName order by Num desc limit 8)union(Select PubName as Name,count(*) as Num From Game natural join Play natural join User where Gender = 'FeMale' Group by PubName order by Num desc limit 7)").fetchall()
+# conn.close()
+# print(query_results)
+
 
 # To prevent from using a blueprint, we use a cyclic import
 # This also means that we need to place this import here
 # pylint: disable=cyclic-import, wrong-import-position
-from app import routes
+# from app import routes
