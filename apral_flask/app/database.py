@@ -225,7 +225,7 @@ def insert_Game(game):
     conn.execute(query)
     conn.close()
 
-def insert_Devloper(developer):
+def insert_Developer(developer):
     """Insert new developer
 
     Args:
@@ -396,7 +396,7 @@ def update_Game(game):
     conn.execute(query)
     conn.close()
 
-def update_Devloper(developer):
+def update_Developer(developer):
     """update developer
 
     Args:
