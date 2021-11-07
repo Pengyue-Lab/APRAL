@@ -1,5 +1,5 @@
 # General Files
-*/.idea
+*.idea
 
 # For APRAL Express
 apral_express/node_modules

@@ -1,0 +1,79 @@
+{% include 'structural/header.html' %}
+<body>
+{% include 'structural/nav.html' %}
+<div class="container">
+    <h1>Game Search</h1>
+    <form class="mb-3" action="/game" method="post">
+        <div class="row">
+            <div class="mb-3 row">
+                <label for="game_name" class="col-sm-2 col-form-label">Game Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="game_name" name="game_name">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <button class="btn btn-lg btn-primary">Advanced Search</button>
+            </div>
+        </div>
+    </form>
+    {#  Button Trigger Modal  #}
+    <button type="button" class="btn btn-lg btn-outline-success" data-bs-toggle="modal" data-bs-target="#game_insert">Insert Game</button>
+    <!-- Modal -->
+    <div class="modal fade" id="game_insert" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Insert Game</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/game_insert" method="post">
+                        <div class="row">
+                            <div class="mb-3 row">
+                                <label for="ins_game_name" class="col-sm-3 col-form-label">Game Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="ins_game_name" name="ins_game_name">
+                                </div>
+                                <label for="ins_dev_name" class="col-sm-3 col-form-label">Developer Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="ins_dev_name" name="ins_dev_name">
+                                </div>
+                                <label for="ins_pub_name" class="col-sm-3 col-form-label">Publisher Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="ins_pub_name" name="ins_pub_name">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary" role="button">Insert</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Game Name</th>
+            <th scope="col">Release Year</th>
+            <th scope="col">Genre</th>
+            <th scope="col">Publisher Name</th>
+            <th scope="col">Rating</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item['GameName'] }}</td>
+                    <td>{{ item['ReleaseYear'] }}</td>
+                    <td>{{ item['Genre'] }}</td>
+                    <td>{{ item['PubName'] }}</td>
+                    <td>{{ item['Rating'] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% include 'structural/footer.html' %}

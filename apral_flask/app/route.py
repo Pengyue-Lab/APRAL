@@ -1,5 +1,5 @@
 """ Specifies routing for the application"""
-from flask import render_template, request, jsonify
+from flask import render_template, request, jsonify, redirect, url_for
 from app import app
 from app import database as db_helper
 
@@ -48,10 +48,7 @@ def create():
 
 
 @app.route("/")
-def homepage():
-    """ returns rendered homepage """
-    # items = db_helper.show_game()
-    # return render_template("index.html", items=items)
+def home():
     return render_template("index.html")
 
 
@@ -60,12 +57,34 @@ def form_page():
     return render_template('form.html')
 
 
-@app.route('/game_search', methods=['GET', 'POST'])
+@app.route('/game', methods=['GET', 'POST'])
 def game_search():
     # https://stackoverflow.com/questions/42154602/how-to-get-form-data-in-flask
     condition = request.form.get('game_name', '')
     if condition != '':
         condition = 'WHERE GameName="' + condition + '"'
-    print(request.args)
     items = db_helper.show_game(condition)
-    return render_template('game_search.html', items=items)
+    return render_template('table_views/game.html', items=items)
+
+
+@app.route('/game_insert', methods=['POST'])
+def game_insert():
+    ins_game_name = request.form.get('ins_game_name', '')
+    ins_dev_name = request.form.get('ins_dev_name', '')
+    ins_pub_name = request.form.get('ins_pub_name', '')
+    game = {
+        "GameName": ins_game_name,
+        "ReleaseYear": 0,
+        "Genre": '',
+        "PubName": ins_pub_name,
+        "NA_Sales": 0,
+        "EU_Sales": 0,
+        "JP_Sales": 0,
+        "Global_Sales": 0,
+        "User_Score": 0,
+        "User_Count": 0,
+        "DevName": ins_dev_name,
+        "Rating": 'R18',
+    }
+    db_helper.insert_game(game)
+    return redirect('/game')
