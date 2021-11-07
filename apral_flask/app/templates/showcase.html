@@ -1,0 +1,11 @@
+{% include 'header.html' %}
+<body>
+{% include 'nav.html' %}
+<div class="container">
+    <ul>
+        {% for item in items %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% include 'footer.html' %}

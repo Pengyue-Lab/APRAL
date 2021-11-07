@@ -3,14 +3,14 @@ from app import db
 
 
 # search_query
-def show_game():
+def show_game(condition=''):
     """Reads all Games 
 
     Returns:
         A list of dictionaries
     """
     conn = db.connect()
-    query_results = conn.execute("Select * from Game;").fetchall()
+    query_results = conn.execute("Select * from Game " + condition + ";").fetchall()
     conn.close()
     game_list = []
     for result in query_results:

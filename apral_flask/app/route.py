@@ -50,6 +50,22 @@ def create():
 @app.route("/")
 def homepage():
     """ returns rendered homepage """
-    # items = db_helper.fetch_todo()
+    # items = db_helper.show_game()
     # return render_template("index.html", items=items)
     return render_template("index.html")
+
+
+@app.route('/form')
+def form_page():
+    return render_template('form.html')
+
+
+@app.route('/game_search', methods=['GET', 'POST'])
+def game_search():
+    # https://stackoverflow.com/questions/42154602/how-to-get-form-data-in-flask
+    condition = request.form.get('game_name', '')
+    if condition != '':
+        condition = 'WHERE GameName="' + condition + '"'
+    print(request.args)
+    items = db_helper.show_game(condition)
+    return render_template('game_search.html', items=items)
