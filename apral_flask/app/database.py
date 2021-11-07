@@ -3,7 +3,7 @@ from app import db
 
 
 # search_query
-def show_Game():
+def show_game():
     """Reads all Games 
 
     Returns:
@@ -31,7 +31,8 @@ def show_Game():
         game_list.append(item)
     return game_list
 
-def show_Developer():
+
+def show_developer():
     """Reads all Developers
 
     Returns:
@@ -54,7 +55,8 @@ def show_Developer():
         developer_list.append(item)
     return developer_list
 
-def show_Publisher():
+
+def show_publisher():
     """Reads all Publishers
 
     Returns:
@@ -75,7 +77,8 @@ def show_Publisher():
         publisher_list.append(item)
     return publisher_list
 
-def show_Platform():
+
+def show_platform():
     """Reads all Platforms
 
     Returns:
@@ -95,7 +98,8 @@ def show_Platform():
         platform_list.append(item)
     return platform_list
 
-def show_User():
+
+def show_user():
     """Reads all Users
 
     Returns:
@@ -119,7 +123,8 @@ def show_User():
         user_list.append(item)
     return user_list
 
-def show_UsePlatform():
+
+def show_use_platform():
     """Reads all UsePlatform
 
     Returns:
@@ -137,7 +142,8 @@ def show_UsePlatform():
         user_platform_list.append(item)
     return user_platform_list
 
-def show_Play():
+
+def show_play():
     """Reads all UsePlatform
 
     Returns:
@@ -157,7 +163,8 @@ def show_Play():
         play_list.append(item)
     return play_list
 
-def show_Based():
+
+def show_based():
     """Reads all Based
 
     Returns:
@@ -175,7 +182,8 @@ def show_Based():
         based_list.append(item)
     return based_list
 
-def show_Advanced_Query1():
+
+def show_advanced_query1():
     """Reads Select Game whose User_Score>8 and manufacturer is Sony or Game whose Use_Score<7 and manufacturer is Microsoft.
 
     Returns:
@@ -194,7 +202,8 @@ def show_Advanced_Query1():
         result_list.append(item)
     return result_list
 
-def show_Advanced_Query2():
+
+def show_advanced_query2():
     """Select the top 8 popluar Developer among female or the top 7 popular Publisher among female.
 
     Returns:
@@ -212,10 +221,11 @@ def show_Advanced_Query2():
         result_list.append(item)
     return result_list
 
-# insert_query
-def insert_Game(game):
-    """Insert new game
 
+# insert_query
+def insert_game(game):
+    """
+    Insert new game
     Args:
         game (dic): game
     """
@@ -225,9 +235,10 @@ def insert_Game(game):
     conn.execute(query)
     conn.close()
 
-def insert_Developer(developer):
-    """Insert new developer
 
+def insert_developer(developer):
+    """
+    Insert new developer
     Args:
         developer (dic)
     """
@@ -236,9 +247,10 @@ def insert_Developer(developer):
     conn.execute(query)
     conn.close()
 
-def insert_Publisher(publisher):
-    """Insert new publisher
 
+def insert_publisher(publisher):
+    """
+    Insert new publisher
     Args:
         publisher (dic)
     """
@@ -247,9 +259,10 @@ def insert_Publisher(publisher):
     conn.execute(query)
     conn.close()
 
-def insert_Platform(platform):
-    """Insert new platform
 
+def insert_platform(platform):
+    """
+    Insert new platform
     Args:
         platform (dic)
     """
@@ -258,9 +271,10 @@ def insert_Platform(platform):
     conn.execute(query)
     conn.close()
 
-def insert_User(user):
-    """Insert new user
 
+def insert_user(user):
+    """
+    Insert new user
     Args:
         user (dic)
     """
@@ -269,18 +283,20 @@ def insert_User(user):
     conn.execute(query)
     conn.close()
 
-def insert_UsePlatform(useplatform):
-    """Insert new useplatform
 
+def insert_use_platform(useplatform):
+    """
+    Insert new usePlatform
     Args:
-        useplatform (dic)
+        usePlatform (dic)
     """
     conn = db.connect()
     query = 'Insert into UsePlatform values("{}","{}");'.format(useplatform['UserId'],useplatform['Initial'])
     conn.execute(query)
     conn.close()
 
-def insert_Play(play):
+
+def insert_play(play):
     """Insert new play
 
     Args:
@@ -291,20 +307,23 @@ def insert_Play(play):
     conn.execute(query)
     conn.close()
 
-def insert_Based(based):
-    """Insert new based
 
+def insert_based(based):
+    """
+    Insert new based
     Args:
         based (dic)
     """
     conn = db.connect()
-    query = 'Insert into Based values("{}","{}");'.format(based['GameName'],based['Initial'])
+    query = 'Insert into Based values("{}","{}");'.format(based['GameName'], based['Initial'])
     conn.execute(query)
     conn.close()
 
+
 # delete_query
-def delete_Game(gamename):
-    """ remove game 
+def delete_game(gamename):
+    """
+    remove game
     Args:
         gamename (str)
     """
@@ -313,8 +332,10 @@ def delete_Game(gamename):
     conn.execute(query)
     conn.close()
 
-def delete_Developer(devname):
-    """ remove developer 
+
+def delete_developer(devname):
+    """
+    remove developer
     Args:
         devname (str)
     """
@@ -323,8 +344,10 @@ def delete_Developer(devname):
     conn.execute(query)
     conn.close()
 
-def delete_Publisher(pubname):
-    """ remove publisher
+
+def delete_publisher(pubname):
+    """
+    remove publisher
     Args:
         pubname (str)
     """
@@ -332,6 +355,7 @@ def delete_Publisher(pubname):
     query = 'Delete From Publisher where PubName="{}";'.format(pubname)
     conn.execute(query)
     conn.close()
+
 
 def delete_Platform(initial):
     """ remove platform 
@@ -363,7 +387,8 @@ def delete_UsePlatform(userId):
     conn.execute(query)
     conn.close()
 
-def delete_Play(userId):
+
+def delete_play(userId):
     """ remove play
     Args:
         userId (str)
@@ -373,8 +398,10 @@ def delete_Play(userId):
     conn.execute(query)
     conn.close()
 
-def delete_Based(gamename):
-    """ remove based 
+
+def delete_based(gamename):
+    """
+    remove based
     Args:
         gamename (str)
     """
@@ -385,20 +412,21 @@ def delete_Based(gamename):
 
 
 # update_query
-def update_Game(game):
-    """update game
+def update_game(game):
+    """
+    update game
     Args:
         game (dic): game
     """
-
     conn = db.connect()
     query = 'Update Game set ReleaseYear = {}, Genre = "{}", PubName = "{}", NA_Sales = {}, EU_Sales = {}, JP_Sales = {}, Global_Sales = {}, User_Score = {}, User_Count = {},DevName = "{}", Rating = "{}" where GameName = "{}";'.format(game['ReleaseYear'],game['Genre'],game['PubName'],game['NA_Sales'],game['EU_Sales'],game['JP_Sales'],game['Global_Sales'],game['User_Score'],game['User_Count'],game['DevName'],game['Rating'],game['GameName'])
     conn.execute(query)
     conn.close()
 
-def update_Developer(developer):
-    """update developer
 
+def update_developer(developer):
+    """
+    update developer
     Args:
         developer (dic)
     """
@@ -407,9 +435,10 @@ def update_Developer(developer):
     conn.execute(query)
     conn.close()
 
-def update_Publisher(publisher):
-    """update publisher
 
+def update_publisher(publisher):
+    """
+    update publisher
     Args:
         publisher (dic)
     """
@@ -418,9 +447,10 @@ def update_Publisher(publisher):
     conn.execute(query)
     conn.close()
 
-def update_Platform(platform):
-    """update platform
 
+def update_platform(platform):
+    """
+    update platform
     Args:
         platform (dic)
     """
@@ -429,9 +459,10 @@ def update_Platform(platform):
     conn.execute(query)
     conn.close()
 
-def update_User(user):
-    """update user
 
+def update_user(user):
+    """
+    update user
     Args:
         user (dic)
     """
@@ -440,9 +471,10 @@ def update_User(user):
     conn.execute(query)
     conn.close()
 
-def update_Play(play):
-    """update play
 
+def update_play(play):
+    """
+    update play
     Args:
         play (dic)
     """
@@ -450,13 +482,3 @@ def update_Play(play):
     query = 'Update Play set Time_length = {}, Proficiency = "{}" where UserId = "{}" and GameName = "{}";'.format(play['Time_length'],play['Proficiency'],play['UserId'],play['GameName'])
     conn.execute(query)
     conn.close()
-
-
-
-
-
-
-
-
-
-

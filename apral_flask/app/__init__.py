@@ -4,7 +4,6 @@ import sqlalchemy
 from flask import Flask
 from yaml import load, Loader
 
-
 app = Flask(__name__)
 def init_connection_engine():
     """ initialize database setup
@@ -13,7 +12,6 @@ def init_connection_engine():
     Returns:
         pool -- a connection to GCP MySQL
     """
-
 
     # detect env local or gcp
     if os.environ.get('GAE_ENV') != 'standard':
@@ -38,8 +36,6 @@ def init_connection_engine():
     )
 
     return pool
-
-
 
 db = init_connection_engine()
 

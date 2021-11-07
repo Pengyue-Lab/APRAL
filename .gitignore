@@ -2,3 +2,5 @@ apral_flask/.venv
 apral_express/node_modules
 apral_express/package-lock.json
 apral_express/package.json
+*/.idea
+apral_flask/app.yaml
