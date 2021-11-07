@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Advanced Personalized Recreational Activity Locator Demo Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
+    <div class="container">
+        <a class="navbar-brand" href="#">APRAL</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Game Search</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        More Contents
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled">In Development</a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Generic Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+<main class="container">
+    <h1>Advanced Search</h1>
+    <form>
+        <div class="row">
+            <div class="mb-3 row">
+                <label for="game_name" class="col-sm-2 col-form-label">Game Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="game_name">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="developer" class="col-sm-2 col-form-label">Developer</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="developer">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="release_date" class="col-sm-2 col-form-label">Release Date</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control" id="release_date">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="platforms" class="col-sm-2 col-form-label">Platforms</label>
+                <div class="col-auto">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="osx" id="_osx">
+                        <label class="form-check-label" for="_osx">
+                            OS X
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="win" id="_win">
+                        <label class="form-check-label" for="_win">
+                            Windows
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="ps4" id="_ps4">
+                        <label class="form-check-label" for="_ps4">
+                            PS4
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-lg btn-primary">Advanced Search</button>
+        </div>
+    </form>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+</body>
+</html>

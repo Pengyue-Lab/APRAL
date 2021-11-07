@@ -1,6 +1,12 @@
-apral_flask/.venv
+# General Files
+*/.idea
+
+# For APRAL Express
 apral_express/node_modules
 apral_express/package-lock.json
 apral_express/package.json
-*/.idea
+
+# For APRAL Flask
 apral_flask/app.yaml
+apral_flask/.venv
+apral_flask/app/__pycache__/

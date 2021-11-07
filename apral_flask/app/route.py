@@ -3,6 +3,7 @@ from flask import render_template, request, jsonify
 from app import app
 from app import database as db_helper
 
+
 @app.route("/delete/<int:task_id>", methods=['POST'])
 def delete(task_id):
     """ recieved post requests for entry delete """
@@ -49,5 +50,6 @@ def create():
 @app.route("/")
 def homepage():
     """ returns rendered homepage """
-    items = db_helper.fetch_todo()
-    return render_template("index.html", items=items)
+    # items = db_helper.fetch_todo()
+    # return render_template("index.html", items=items)
+    return render_template("index.html")
