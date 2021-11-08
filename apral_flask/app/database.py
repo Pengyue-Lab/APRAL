@@ -377,36 +377,36 @@ def delete_User(userId):
     conn.execute(query)
     conn.close()
 
-def delete_UsePlatform(userId):
+def delete_UsePlatform(usePlatform):
     """ remove useplatform
     Args:
-        userId (str)
+        usePlatform (dic)
     """
     conn = db.connect()
-    query = 'Delete from UsePlatform where UserId = "{}";'.format(userId)
+    query = 'Delete from UsePlatform where UserId = "{}" and Initial = "{}";'.format(usePlatform['UserId'],usePlatform['Initial'])
     conn.execute(query)
     conn.close()
 
 
-def delete_play(userId):
+def delete_play(play):
     """ remove play
     Args:
-        userId (str)
+        play (dict)
     """
     conn = db.connect()
-    query = 'Delete from Play where UserId = "{}";'.format(userId)
+    query = 'Delete from Play where UserId = "{}" and GameName = "{}" ;'.format(play['UserId'],play['GameName'])
     conn.execute(query)
     conn.close()
 
 
-def delete_based(gamename):
+def delete_based(based):
     """
     remove based
     Args:
-        gamename (str)
+        based (dic)
     """
     conn = db.connect()
-    query = 'Delete From Based where GameName="{}";'.format(gamename)
+    query = 'Delete From Based where GameName="{}" and Initial="{}";'.format(based['GameName'],based['Initial'])
     conn.execute(query)
     conn.close()
 

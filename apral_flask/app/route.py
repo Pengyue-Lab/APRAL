@@ -87,3 +87,48 @@ def game_delete():
     db_helper.delete_game(game_name)
 
     return redirect('/game')
+
+
+
+
+@app.route('/based', methods=['GET', 'POST'])
+def based_search():
+    condition1 = request.form.get('game_name', '')
+    condition2 = request.form.get('initial', '')  
+    if condition1 != '' and condition2 == '':
+        condition = 'WHERE GameName="' + condition1 + '"' 
+    elif condition1 == '' and condition2 != '':
+        condition = 'WHERE Initial="' + condition2 + '"'
+    elif condition1 != '' and condition2 != '':
+        condition = 'WHERE GameName="' + condition1 + '"' + ' AND Initial="' + condition2 + '"'
+    elif condition1 == '' and condition2 == '':
+        condition = ''
+    items = db_helper.show_based(condition)
+    return render_template('table_views/based.html', items=items)
+
+
+@app.route('/based_insert', methods=['POST'])
+def based_insert():
+
+    game_name = request.form.get('ins_game_name', '')
+    initial = request.form.get('ins_initial', '')
+    game = {
+        "GameName": game_name,
+        "Initial": initial,
+    }
+    db_helper.insert_based(game)
+    return redirect('/based')
+
+
+@app.route("/based_delete", methods=['POST'])
+def based_delete():
+
+    game_name = request.form.get('del_game_name', '')
+    initial = request.form.get('del_initial', '')
+    based = {
+        "GameName": game_name,
+        "Initial": initial,
+    }
+    db_helper.delete_based(based)
+
+    return redirect('/based')

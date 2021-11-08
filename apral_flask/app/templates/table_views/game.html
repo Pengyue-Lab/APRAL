@@ -102,34 +102,6 @@
         </div>
     </div>
 
-    {#  Button Trigger Modal delete #}   
-    <button type="button" class="btn btn-lg btn-outline-warning" data-bs-toggle="modal" data-bs-target="#game_update">Update Game</button>
-    <!-- Modal --> 
-    <div class="modal fade" id="game_update" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Update Game</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="/game_update" method="post">
-                        <div class="row">
-                            <div class="mb-4 row">
-                                <label for="upd_game_name" class="col-sm-4 col-form-label">Game Name</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="upd_game_name" name="upd_game_name">
-                                </div>
-                            </div>
-                        </div>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary" role="button">Update</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     {#  Button Trigger Modal delete #}   
     <button type="button" class="btn btn-lg btn-outline-danger" data-bs-toggle="modal" data-bs-target="#game_delete">Delete Game</button>
