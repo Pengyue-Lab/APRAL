@@ -183,7 +183,7 @@ def show_based(condition=''):
     return based_list
 
 
-def show_advanced_query1():
+def show_advanced_query2():
     """Reads Select Game whose User_Score>8 and manufacturer is Sony or Game whose Use_Score<7 and manufacturer is Microsoft.
 
     Returns:
@@ -203,7 +203,7 @@ def show_advanced_query1():
     return result_list
 
 
-def show_advanced_query2():
+def show_advanced_query1():
     """Select the top 8 popluar Developer among female or the top 7 popular Publisher among female.
 
     Returns:

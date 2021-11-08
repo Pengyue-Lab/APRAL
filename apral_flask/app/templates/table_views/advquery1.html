@@ -1,0 +1,25 @@
+{% include 'structural/header.html' %}
+<body>
+{% include 'structural/nav.html' %}
+
+<!-- Show table -->
+<div class="container">
+    <h1>Select the top 8 popluar Developer among female or the top 7 popular Publisher among female.</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Developer and Publisher Name</th>
+            <th scope="col">Number</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item['DevPubName'] }}</td>
+                    <td>{{ item['Number'] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% include 'structural/footer.html' %}

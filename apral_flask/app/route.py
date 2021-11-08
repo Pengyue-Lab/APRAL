@@ -342,5 +342,16 @@ def play_delete():
     return redirect('/play')
 
 
+@app.route("/advquery1")
+def advquery1():
+
+    items =  db_helper.show_advanced_query1()
+    return render_template('table_views/advquery1.html', items=items)
+
+@app.route("/advquery2")
+def advquery2():
+
+    items =  db_helper.show_advanced_query2()
+    return render_template('table_views/advquery2.html', items=items)
 
 

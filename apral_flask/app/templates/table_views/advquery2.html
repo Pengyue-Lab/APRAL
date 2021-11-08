@@ -1,0 +1,27 @@
+{% include 'structural/header.html' %}
+<body>
+{% include 'structural/nav.html' %}
+
+<!-- Show table -->
+<div class="container">
+    <h1>Select Game whose User_Score > 8 and manufacturer is Sony or Game whose Use_Score < 7 and manufacturer is Microsoft.</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Game Name</th>
+            <th scope="col">Manufacturer</th>
+            <th scope="col">User Score</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item['GameName'] }}</td>
+                    <td>{{ item['Manufacturer'] }}</td>
+                    <td>{{ item['User_Score'] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% include 'structural/footer.html' %}
