@@ -357,7 +357,7 @@ def delete_publisher(pubname):
     conn.close()
 
 
-def delete_Platform(initial):
+def delete_platform(initial):
     """ remove platform 
     Args:
         initial (str)
@@ -367,7 +367,8 @@ def delete_Platform(initial):
     conn.execute(query)
     conn.close()
 
-def delete_User(userId):
+
+def delete_user(userId):
     """ remove user 
     Args:
         userId (str)
@@ -377,13 +378,14 @@ def delete_User(userId):
     conn.execute(query)
     conn.close()
 
-def delete_UsePlatform(usePlatform):
+
+def delete_use_platform(useplatform):
     """ remove useplatform
     Args:
         usePlatform (dic)
     """
     conn = db.connect()
-    query = 'Delete from UsePlatform where UserId = "{}" and Initial = "{}";'.format(usePlatform['UserId'],usePlatform['Initial'])
+    query = 'Delete from UsePlatform where UserId = "{}" and Initial = "{}";'.format(useplatform['UserId'],useplatform['Initial'])
     conn.execute(query)
     conn.close()
 

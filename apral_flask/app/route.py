@@ -1,4 +1,5 @@
 """ Specifies routing for the application"""
+from sys import platform
 from flask import render_template, request, jsonify, redirect, url_for
 from app import app
 from app import database as db_helper
@@ -89,8 +90,6 @@ def game_delete():
     return redirect('/game')
 
 
-
-
 @app.route('/based', methods=['GET', 'POST'])
 def based_search():
     condition1 = request.form.get('game_name', '')
@@ -132,3 +131,216 @@ def based_delete():
     db_helper.delete_based(based)
 
     return redirect('/based')
+
+
+@app.route('/developer', methods=['GET', 'POST'])
+def developer_search():
+    condition = request.form.get('developer_name', '')
+    if condition != '':
+        condition = 'WHERE DevName="' + condition + '"'
+    items = db_helper.show_developer(condition)
+    return render_template('table_views/developer.html', items=items)
+
+
+@app.route('/developer_insert', methods=['POST'])
+def developer_insert():
+
+    developer_name = request.form.get('ins_developer_name', '')
+    active = request.form.get('ins_active', '')
+    city = request.form.get('ins_city', '')
+    country = request.form.get('ins_country', '')
+    establish_time = request.form.get('ins_establish_time', '')
+    notable_games = request.form.get('ins_notable_games', '')
+    notes = request.form.get('ins_notes', '')   
+
+    developer = {
+        "DevName": developer_name,
+        "Active": active,
+        "City": city,
+        "Country": country,
+        "EstablishTime": establish_time,
+        "Notable_games": notable_games,
+        "Notes": notes,
+    }
+    db_helper.insert_developer(developer)
+    return redirect('/developer')
+
+
+@app.route("/developer_delete", methods=['POST'])
+def developer_delete():
+
+    developer_name = request.form.get('del_developer_name', '')
+    db_helper.delete_developer(developer_name)
+
+    return redirect('/developer')
+
+
+@app.route('/publisher', methods=['GET', 'POST'])
+def publisher_search():
+    condition = request.form.get('publisher_name', '')
+    if condition != '':
+        condition = 'WHERE PubName="' + condition + '"'
+    items = db_helper.show_publisher(condition)
+    return render_template('table_views/publisher.html', items=items)
+
+
+@app.route('/publisher_insert', methods=['POST'])
+def publisher_insert():
+
+    publisher_name = request.form.get('ins_publisher_name', '')
+    headquarters = request.form.get('ins_headquarters', '')
+    establishTime = request.form.get('ins_establishTime', '')
+    notable_games = request.form.get('ins_notable_games', '')
+    notes = request.form.get('ins_notes', '')
+
+
+    publisher = {
+        "PubName": publisher_name,
+        "Headquarters": headquarters,
+        "EstablishTime": establishTime,
+        "Notable_games": notable_games,
+        "Notes": notes,
+    }
+    db_helper.insert_publisher(publisher)
+    return redirect('/publisher')
+
+
+@app.route("/publisher_delete", methods=['POST'])
+def publisher_delete():
+
+    publisher_name = request.form.get('del_publisher_name', '')
+    db_helper.delete_publisher(publisher_name)
+
+    return redirect('/publisher')
+
+
+@app.route('/platform', methods=['GET', 'POST'])
+def platform_search():
+    condition = request.form.get('platform_name', '')
+    if condition != '':
+        condition = 'WHERE Initial="' + condition + '"'
+    items = db_helper.show_platform(condition)
+    return render_template('table_views/platform.html', items=items)
+
+
+@app.route('/platform_insert', methods=['POST'])
+def platform_insert():
+
+    initial = request.form.get('ins_initial', '')
+    fullName = request.form.get('ins_fullName', '')
+    manufacturer = request.form.get('ins_manufacturer', '')
+    num_JA_EU_US = request.form.get('ins_num_JA_EU_US', '')
+
+    platform = {
+        "Initial":initial,
+        "FullName": fullName,
+        "Manufacturer": manufacturer,
+        "Num_JA_EU_US": num_JA_EU_US,
+    }
+    db_helper.insert_platform(platform)
+    return redirect('/platform ')
+
+
+@app.route("/platform_delete", methods=['POST'])
+def platform_delete():
+
+    platform_name = request.form.get('del_platform_name', '')
+    db_helper.delete_platform(platform_name)
+
+    return redirect('/platform')
+
+
+@app.route('/userplatform', methods=['GET', 'POST'])
+def userplatform_search():
+    condition1 = request.form.get('userid', '')
+    condition2 = request.form.get('initial', '')  
+    if condition1 != '' and condition2 == '':
+        condition = 'WHERE UserId="' + condition1 + '"' 
+    elif condition1 == '' and condition2 != '':
+        condition = 'WHERE Initial="' + condition2 + '"'
+    elif condition1 != '' and condition2 != '':
+        condition = 'WHERE UserId="' + condition1 + '"' + ' AND Initial="' + condition2 + '"'
+    elif condition1 == '' and condition2 == '':
+        condition = ''
+    items = db_helper.show_use_platform(condition)
+    return render_template('table_views/userplatform.html', items=items)
+
+
+@app.route('/userplatform_insert', methods=['POST'])
+def userplatform_insert():
+
+    userid = request.form.get('ins_userid', '')
+    initial = request.form.get('ins_initial', '')
+    userplatform = {
+        "UserId": userid,
+        "Initial": initial,
+    }
+    db_helper.insert_use_platform(userplatform)
+    return redirect('/userplatform')
+
+
+@app.route("/userplatform_delete", methods=['POST'])
+def userplatform_delete():
+
+    userid = request.form.get('del_userid', '')
+    initial = request.form.get('del_initial', '')
+    userplatform = {
+        "UserId": userid,
+        "Initial": initial,
+    }
+    db_helper.delete_use_platform(userplatform)
+
+    return redirect('/userplatform')
+
+
+@app.route('/play', methods=['GET', 'POST'])
+def play_search():
+    condition1 = request.form.get('userid', '')
+    condition2 = request.form.get('game_name', '')  
+    if condition1 != '' and condition2 == '':
+        condition = 'WHERE UserId="' + condition1 + '"' 
+    elif condition1 == '' and condition2 != '':
+        condition = 'WHERE GameName="' + condition2 + '"'
+    elif condition1 != '' and condition2 != '':
+        condition = 'WHERE UserId="' + condition1 + '"' + ' AND GameName="' + condition2 + '"'
+    elif condition1 == '' and condition2 == '':
+        condition = ''
+    items = db_helper.show_play(condition)
+    return render_template('table_views/play.html', items=items)
+
+
+@app.route('/play_insert', methods=['POST'])
+def play_insert():
+
+    userid = request.form.get('ins_userid', '')
+    game_name = request.form.get('ins_game_name', '')
+    time_length = request.form.get('ins_time_length', '')
+    proficiency = request.form.get('ins_proficiency', '')    
+
+    play = {
+        "UserId": userid,
+        "GameName": game_name,
+        "Time_length":time_length,
+        "Proficiency":proficiency 
+    }
+
+    db_helper.insert_play(play)
+    return redirect('/play')
+
+
+@app.route("/play_delete", methods=['POST'])
+def play_delete():
+
+    userid = request.form.get('del_userid', '')
+    game_name = request.form.get('del_game_name', '')
+    play = {
+        "UserId": userid,
+        "GameName": game_name,
+    }
+    db_helper.delete_play(play)
+
+    return redirect('/play')
+
+
+
+

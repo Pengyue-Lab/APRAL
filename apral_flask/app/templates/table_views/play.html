@@ -1,0 +1,128 @@
+{% include 'structural/header.html' %}
+<body>
+{% include 'structural/nav.html' %}
+<div class="container">
+    <h1>Play Search</h1>
+    <form class="mb-3" action="/play" method="post">
+        <div class="row">
+            <div class="mb-3 row">
+                <label for="userid" class="col-sm-2 col-form-label">User Id</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="userid" name="userid">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="game_name" class="col-sm-2 col-form-label">Game Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="game_name" name="game_name">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <button class="btn btn-lg btn-primary">Advanced Search</button>
+            </div>
+        </div>
+    </form>
+    
+    {#  Button Trigger Modal Insert #}
+    <button type="button" class="btn btn-lg btn-outline-success" data-bs-toggle="modal" data-bs-target="#play_insert">Insert Play</button>
+    <!-- Modal -->
+    <div class="modal fade" id="play_insert" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Insert Play</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/play_insert" method="post">
+                        <div class="row">
+                            <div class="mb-4 row">
+
+                                <label for="ins_userid" class="col-sm-4 col-form-label">User Id</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="ins_userid" name="ins_userid">
+                                </div>
+
+                                <label for="ins_game_name" class="col-sm-4 col-form-label">Game Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="ins_game_name" name="ins_game_name">
+                                </div>
+                                <label for="ins_time_length" class="col-sm-4 col-form-label">Time Length</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="ins_time_length" name="ins_time_length">
+                                </div>
+
+                                <label for="ins_proficiency" class="col-sm-4 col-form-label">Proficiency</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="ins_proficiency" name="ins_proficiency">
+                                </div>
+
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary" role="button">Insert</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {#  Button Trigger Modal delete #}   
+    <button type="button" class="btn btn-lg btn-outline-danger" data-bs-toggle="modal" data-bs-target="#play_delete">Delete Play</button>
+    <!-- Modal --> 
+    <div class="modal fade" id="play_delete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete Play</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/play_delete" method="post">
+                        <div class="row">
+                            <div class="mb-4 row">
+                                <label for="del_userid" class="col-sm-4 col-form-label">User Id</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="del_userid" name="del_userid">
+                                </div>
+                                <label for="del_game_name" class="col-sm-4 col-form-label">Game Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="del_game_name" name="del_game_name">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary" role="button">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Show table -->
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">User Id</th>
+            <th scope="col">Game Name</th>
+            <th scope="col">Time Length</th>
+            <th scope="col">Proficiency</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item['UserId'] }}</td>
+                    <td>{{ item['GameName'] }}</td>
+                    <td>{{ item['Time_length'] }}</td>
+                    <td>{{ item['Proficiency'] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% include 'structural/footer.html' %}

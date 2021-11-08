@@ -1,0 +1,140 @@
+{% include 'structural/header.html' %}
+<body>
+{% include 'structural/nav.html' %}
+<div class="container">
+    <h1>Developer Search</h1>
+    <form class="mb-3" action="/developer" method="post">
+        <div class="row">
+            <div class="mb-3 row">
+                <label for="developer_name" class="col-sm-2 col-form-label">Developer Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="developer_name" name="developer_name">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <button class="btn btn-lg btn-primary">Advanced Search</button>
+            </div>
+        </div>
+    </form>
+    
+    {#  Button Trigger Modal Insert #}
+    <button type="button" class="btn btn-lg btn-outline-success" data-bs-toggle="modal" data-bs-target="#developer_insert">Insert Developer</button>
+    <!-- Modal -->
+    <div class="modal fade" id="developer_insert" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Insert Developer</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/developer_insert" method="post">
+                        <div class="row">
+                            <div class="mb-4 row">
+
+                                <label for="ins_developer_name" class="col-sm-4 col-form-label">Developer Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="ins_developer_name" name="ins_developer_name">
+                                </div>
+
+                                <label for="ins_active" class="col-sm-4 col-form-label">Active</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="ins_active" name="ins_active">
+                                </div>
+
+                                <label for="ins_city" class="col-sm-4 col-form-label">City</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="ins_city" name="ins_city">
+                                </div>
+                            
+                                <label for="ins_country" class="col-sm-4 col-form-label">Country</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="ins_country" name="ins_country">
+                                </div>
+
+                                <label for="ins_establish_time" class="col-sm-4 col-form-label">Establish Time</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="ins_establish_time" name="ins_establish_time">
+                                </div> 
+
+                                <label for="ins_notable_games" class="col-sm-4 col-form-label">Notable Games</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="ins_notable_games" name="ins_notable_games">
+                                </div> 
+
+                                <label for="ins_notes" class="col-sm-4 col-form-label">Notes</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="ins_notes" name="ins_notes">
+                                </div> 
+
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary" role="button">Insert</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {#  Button Trigger Modal delete #}   
+    <button type="button" class="btn btn-lg btn-outline-danger" data-bs-toggle="modal" data-bs-target="#developer_delete">Delete Developer</button>
+    <!-- Modal --> 
+    <div class="modal fade" id="developer_delete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete Developer</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/developer_delete" method="post">
+                        <div class="row">
+                            <div class="mb-4 row">
+                                <label for="del_developer_name" class="col-sm-4 col-form-label">Developer Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="del_developer_name" name="del_developer_name">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary" role="button">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Show table -->
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Developer Name</th>
+            <th scope="col">Active</th>
+            <th scope="col">City</th>
+            <th scope="col">Country</th>
+            <th scope="col">Establish Time</th>
+            <th scope="col">Notable Games</th> 
+            <th scope="col">Notes</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item['DevName'] }}</td>
+                    <td>{{ item['Active'] }}</td>
+                    <td>{{ item['City'] }}</td>
+                    <td>{{ item['Country'] }}</td>
+                    <td>{{ item['EstablishTime'] }}</td> 
+                    <td>{{ item['Notable_games'] }}</td>
+                    <td>{{ item['Notes'] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% include 'structural/footer.html' %}
