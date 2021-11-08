@@ -5,7 +5,7 @@ from app import db
 # search_query
 def show_game(condition=''):
     """
-    Reads all Games
+    Reads selected Games
     Returns:
         A list of dictionaries
     """
@@ -32,14 +32,14 @@ def show_game(condition=''):
     return game_list
 
 
-def show_developer():
-    """Reads all Developers
+def show_developer(condition=''):
+    """Reads selected Developers
 
     Returns:
         A list of dictionaries
     """
     conn = db.connect()
-    query_results = conn.execute("Select * from Developer;").fetchall()
+    query_results = conn.execute("Select * from Developer " + condition + ";").fetchall()
     conn.close()
     developer_list = []
     for result in query_results:
@@ -56,14 +56,14 @@ def show_developer():
     return developer_list
 
 
-def show_publisher():
+def show_publisher(condition=''):
     """Reads all Publishers
 
     Returns:
         A list of dictionaries
     """
     conn = db.connect()
-    query_results = conn.execute("Select * from Publisher;").fetchall()
+    query_results = conn.execute("Select * from Publisher " + condition + ";").fetchall()
     conn.close()
     publisher_list = []
     for result in query_results:
@@ -78,14 +78,14 @@ def show_publisher():
     return publisher_list
 
 
-def show_platform():
+def show_platform(condition=''):
     """Reads all Platforms
 
     Returns:
         A list of dictionaries
     """
     conn = db.connect()
-    query_results = conn.execute("Select * from Platform;").fetchall()
+    query_results = conn.execute("Select * from Platform " + condition + ";").fetchall()
     conn.close()
     platform_list = []
     for result in query_results:
@@ -124,14 +124,14 @@ def show_user():
     return user_list
 
 
-def show_use_platform():
+def show_use_platform(condition=''):
     """Reads all UsePlatform
 
     Returns:
         A list of dictionaries
     """
     conn = db.connect()
-    query_results = conn.execute("Select * from UsePlatform;").fetchall()
+    query_results = conn.execute("Select * from UsePlatform " + condition + ";").fetchall()
     conn.close()
     user_platform_list = []
     for result in query_results:
@@ -143,14 +143,14 @@ def show_use_platform():
     return user_platform_list
 
 
-def show_play():
+def show_play(condition=''):
     """Reads all UsePlatform
 
     Returns:
         A list of dictionaries
     """
     conn = db.connect()
-    query_results = conn.execute("Select * from Play;").fetchall()
+    query_results = conn.execute("Select * from Play " + condition + ";").fetchall()
     conn.close()
     play_list = []
     for result in query_results:
@@ -164,14 +164,14 @@ def show_play():
     return play_list
 
 
-def show_based():
+def show_based(condition=''):
     """Reads all Based
 
     Returns:
         A list of dictionaries
     """
     conn = db.connect()
-    query_results = conn.execute("Select * from Based;").fetchall()
+    query_results = conn.execute("Select * from Based " + condition + ";").fetchall()
     conn.close()
     based_list = []
     for result in query_results:

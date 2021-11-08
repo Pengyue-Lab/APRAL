@@ -4,18 +4,6 @@ from app import app
 from app import database as db_helper
 
 
-@app.route("/delete/<int:task_id>", methods=['POST'])
-def delete(task_id):
-    """ recieved post requests for entry delete """
-
-    try:
-        db_helper.remove_task_by_id(task_id)
-        result = {'success': True, 'response': 'Removed task'}
-    except:
-        result = {'success': False, 'response': 'Something went wrong'}
-
-    return jsonify(result)
-
 
 @app.route("/edit/<int:task_id>", methods=['POST'])
 def update(task_id):
@@ -35,15 +23,6 @@ def update(task_id):
     except:
         result = {'success': False, 'response': 'Something went wrong'}
 
-    return jsonify(result)
-
-
-@app.route("/create", methods=['POST'])
-def create():
-    """ recieves post requests to add new task """
-    data = request.get_json()
-    db_helper.insert_new_task(data['GamenName'])
-    result = {'success': True, 'response': 'Done'}
     return jsonify(result)
 
 
@@ -69,22 +48,42 @@ def game_search():
 
 @app.route('/game_insert', methods=['POST'])
 def game_insert():
-    ins_game_name = request.form.get('ins_game_name', '')
-    ins_dev_name = request.form.get('ins_dev_name', '')
-    ins_pub_name = request.form.get('ins_pub_name', '')
+
+    game_name = request.form.get('ins_game_name', '')
+    release_year = request.form.get('ins_release_year', '')
+    genre= request.form.get('ins_genre', '')
+    dev_name = request.form.get('ins_dev_name', '')
+    pub_name = request.form.get('ins_pub_name', '')
+    NA_sales = request.form.get('ins_NA_sales', '')
+    EU_sales = request.form.get('ins_EU_sales', '')
+    JP_sales = request.form.get('ins_JP_sales', '')
+    Global_Sales = request.form.get('ins_global_sales', '')
+    user_score = request.form.get('ins_user_score', '')
+    user_count = request.form.get('ins_user_count', '')
+    rating = request.form.get('ins_rating', '')
+
     game = {
-        "GameName": ins_game_name,
-        "ReleaseYear": 0,
-        "Genre": '',
-        "PubName": ins_pub_name,
-        "NA_Sales": 0,
-        "EU_Sales": 0,
-        "JP_Sales": 0,
-        "Global_Sales": 0,
-        "User_Score": 0,
-        "User_Count": 0,
-        "DevName": ins_dev_name,
-        "Rating": 'R18',
+        "GameName": game_name,
+        "ReleaseYear": release_year,
+        "Genre": genre,
+        "PubName": pub_name,
+        "NA_Sales": NA_sales,
+        "EU_Sales": EU_sales,
+        "JP_Sales": JP_sales,
+        "Global_Sales": Global_Sales,
+        "User_Score": user_score,
+        "User_Count": user_count,
+        "DevName": dev_name,
+        "Rating": rating,
     }
     db_helper.insert_game(game)
+    return redirect('/game')
+
+
+@app.route("/game_delete", methods=['POST'])
+def game_delete():
+
+    game_name = request.form.get('del_game_name', '')
+    db_helper.delete_game(game_name)
+
     return redirect('/game')

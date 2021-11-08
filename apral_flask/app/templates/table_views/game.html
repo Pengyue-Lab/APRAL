@@ -16,7 +16,8 @@
             </div>
         </div>
     </form>
-    {#  Button Trigger Modal  #}
+    
+    {#  Button Trigger Modal Insert #}
     <button type="button" class="btn btn-lg btn-outline-success" data-bs-toggle="modal" data-bs-target="#game_insert">Insert Game</button>
     <!-- Modal -->
     <div class="modal fade" id="game_insert" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
@@ -29,19 +30,68 @@
                 <div class="modal-body">
                     <form action="/game_insert" method="post">
                         <div class="row">
-                            <div class="mb-3 row">
-                                <label for="ins_game_name" class="col-sm-3 col-form-label">Game Name</label>
+                            <div class="mb-4 row">
+
+                                <label for="ins_game_name" class="col-sm-4 col-form-label">Game Name</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" id="ins_game_name" name="ins_game_name">
                                 </div>
-                                <label for="ins_dev_name" class="col-sm-3 col-form-label">Developer Name</label>
+
+                                <label for="ins_release_year" class="col-sm-4 col-form-label">Release Year</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="ins_release_year" name="ins_release_year">
+                                </div>
+
+                                <label for="ins_genre" class="col-sm-4 col-form-label">Genre</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="ins_genre" name="ins_genre">
+                                </div>
+                            
+                                <label for="ins_dev_name" class="col-sm-4 col-form-label">Developer Name</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" id="ins_dev_name" name="ins_dev_name">
                                 </div>
-                                <label for="ins_pub_name" class="col-sm-3 col-form-label">Publisher Name</label>
+
+                                <label for="ins_pub_name" class="col-sm-4 col-form-label">Publisher Name</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" id="ins_pub_name" name="ins_pub_name">
-                                </div>
+                                </div> 
+
+                                <label for="ins_user_score" class="col-sm-4 col-form-label">User Score</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="ins_user_score" name="ins_user_score">
+                                </div> 
+
+                                <label for="ins_user_count" class="col-sm-4 col-form-label">User Count</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="ins_user_count" name="ins_user_count">
+                                </div> 
+
+                                <label for="ins_NA_sales" class="col-sm-4 col-form-label">NA Sales</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="ins_NA_sales" name="ins_NA_sales">
+                                </div> 
+
+                                <label for="ins_EU_sales" class="col-sm-4 col-form-label">EU Sales</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="ins_EU_sales" name="ins_EU_sales">
+                                </div> 
+
+                                <label for="ins_JP_sales" class="col-sm-4 col-form-label">JP Sales</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="ins_JP_sales" name="ins_JP_sales">
+                                </div> 
+
+                                <label for="ins_global_sales" class="col-sm-4 col-form-label">Global Sales</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="ins_global_sales" name="ins_global_sales">
+                                </div> 
+
+                                <label for="ins_rating" class="col-sm-4 col-form-label">Rating</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="ins_rating" name="ins_rating">
+                                </div> 
+
                             </div>
                         </div>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -51,7 +101,67 @@
             </div>
         </div>
     </div>
+
+    {#  Button Trigger Modal delete #}   
+    <button type="button" class="btn btn-lg btn-outline-warning" data-bs-toggle="modal" data-bs-target="#game_update">Update Game</button>
+    <!-- Modal --> 
+    <div class="modal fade" id="game_update" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Update Game</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/game_update" method="post">
+                        <div class="row">
+                            <div class="mb-4 row">
+                                <label for="upd_game_name" class="col-sm-4 col-form-label">Game Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="upd_game_name" name="upd_game_name">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary" role="button">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {#  Button Trigger Modal delete #}   
+    <button type="button" class="btn btn-lg btn-outline-danger" data-bs-toggle="modal" data-bs-target="#game_delete">Delete Game</button>
+    <!-- Modal --> 
+    <div class="modal fade" id="game_delete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete Game</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/game_delete" method="post">
+                        <div class="row">
+                            <div class="mb-4 row">
+                                <label for="del_game_name" class="col-sm-4 col-form-label">Game Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="del_game_name" name="del_game_name">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary" role="button">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+<!-- Show table -->
 <div class="container">
     <table class="table">
         <thead>
@@ -60,6 +170,13 @@
             <th scope="col">Release Year</th>
             <th scope="col">Genre</th>
             <th scope="col">Publisher Name</th>
+            <th scope="col">Developer Name</th>
+            <th scope="col">User Score</th> 
+            <th scope="col">User Count</th>
+            <th scope="col">NA Sales</th>
+            <th scope="col">EU Sales</th>
+            <th scope="col">JP Sales</th>
+            <th scope="col">Global Sales</th>                   
             <th scope="col">Rating</th>
         </tr>
         </thead>
@@ -70,6 +187,13 @@
                     <td>{{ item['ReleaseYear'] }}</td>
                     <td>{{ item['Genre'] }}</td>
                     <td>{{ item['PubName'] }}</td>
+                    <td>{{ item['DevName'] }}</td>
+                    <td>{{ item['User_Score'] }}</td> 
+                    <td>{{ item['User_Count'] }}</td>
+                    <td>{{ item['NA_Sales'] }}</td>
+                    <td>{{ item['EU_Sales'] }}</td>
+                    <td>{{ item['JP_Sales'] }}</td>
+                    <td>{{ item['Global_Sales'] }}</td>                         
                     <td>{{ item['Rating'] }}</td>
                 </tr>
             {% endfor %}
