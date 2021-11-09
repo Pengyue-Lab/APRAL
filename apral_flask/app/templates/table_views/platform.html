@@ -110,7 +110,47 @@
                     <td>{{ item['FullName'] }}</td>
                     <td>{{ item['Manufacturer'] }}</td>
                     <td>{{ item['Num_JA_EU_US'] }}</td>
+                    <td><button type="button" class="btn btn-lg btn-outline-success" data-bs-toggle="modal" data-bs-target="#platform_update{{ loop.index }}">Update Platform</button></td>
+                    <!-- Modal -->
+                    <div class="modal fade" id="platform_update{{ loop.index }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Update Platform</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/platform_update" method="post">
+                                        <div class="row">
+                                            <div class="mb-4 row">
+
+                                                <input type = "hidden" name = "upd_initial" value = "{{ item['Initial'] }}" />
+
+                                                <label for="upd_fullName" class="col-sm-4 col-form-label">Full Name</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="upd_fullName" name="upd_fullName" value = "{{ item['FullName'] }}">
+                                                </div>
+
+                                                <label for="upd_manufacturer" class="col-sm-4 col-form-label">Manufacturer</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="upd_manufacturer" name="upd_manufacturer" value = "{{ item['Manufacturer'] }}">
+                                                </div>
+                                            
+                                                <label for="upd_num_JA_EU_US" class="col-sm-4 col-form-label">Sales In JA EU US</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="upd_num_JA_EU_US" name="upd_num_JA_EU_US"  value = "{{ item['Num_JA_EU_US'] }}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-primary" role="button">Update</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </tr>
+
             {% endfor %}
         </tbody>
     </table>

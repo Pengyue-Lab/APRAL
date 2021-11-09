@@ -132,6 +132,60 @@
                     <td>{{ item['EstablishTime'] }}</td> 
                     <td>{{ item['Notable_games'] }}</td>
                     <td>{{ item['Notes'] }}</td>
+                    <td><button type="button" class="btn btn-lg btn-outline-warning" data-bs-toggle="modal" data-bs-target="#developer_update{{ loop.index }}">Update</button></td>
+
+                    <div class="modal fade" id="developer_update{{ loop.index }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Update Developer</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/developer_update" method="post">
+                                        <div class="row">
+                                            <div class="mb-4 row">
+                
+                                                <input type = "hidden" name = "upd_developer_name" value = "{{ item['DevName'] }}" />
+                
+                                                <label for="upd_active" class="col-sm-4 col-form-label">Active</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="upd_active" name="upd_active" value = "{{ item['Active'] }}">
+                                                </div>
+                
+                                                <label for="upd_city" class="col-sm-4 col-form-label">City</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="upd_city" name="upd_city" value = "{{ item['City'] }}">
+                                                </div>
+                                            
+                                                <label for="upd_country" class="col-sm-4 col-form-label">Country</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="upd_country" name="upd_country" value = "{{ item['Country'] }}">
+                                                </div>
+                
+                                                <label for="upd_establish_time" class="col-sm-4 col-form-label">Establish Time</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="upd_establish_time" name="upd_establish_time" value = "{{ item['EstablishTime'] }}">
+                                                </div> 
+                
+                                                <label for="upd_notable_games" class="col-sm-4 col-form-label">Notable Games</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="upd_notable_games" name="upd_notable_games" value = "{{ item['Notable_games'] }}">
+                                                </div> 
+                
+                                                <label for="upd_notes" class="col-sm-4 col-form-label">Notes</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="upd_notes" name="upd_notes" value = "{{ item['Notes'] }}">
+                                                </div> 
+                
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-primary" role="button">Update</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                 </tr>
             {% endfor %}
         </tbody>

@@ -209,6 +209,30 @@ def developer_delete():
     return redirect('/developer')
 
 
+@app.route('/developer_update', methods=['POST'])
+def developer_update():
+
+    developer_name = request.form.get('upd_developer_name', '')
+    active = request.form.get('upd_active', '')
+    city = request.form.get('upd_city', '')
+    country = request.form.get('upd_country', '')
+    establish_time = request.form.get('upd_establish_time', '')
+    notable_games = request.form.get('upd_notable_games', '')
+    notes = request.form.get('upd_notes', '')   
+
+    developer = {
+        "DevName": developer_name,
+        "Active": active,
+        "City": city,
+        "Country": country,
+        "EstablishTime": establish_time,
+        "Notable_games": notable_games,
+        "Notes": notes,
+    }
+    db_helper.update_developer(developer)
+    return redirect('/developer')
+
+
 @app.route('/publisher', methods=['GET', 'POST'])
 def publisher_search():
     condition = request.form.get('publisher_name', '')
@@ -247,6 +271,29 @@ def publisher_delete():
 
     return redirect('/publisher')
 
+@app.route('/publisher_update', methods=['POST'])
+def publisher_update():
+
+    publisher_name = request.form.get('upd_publisher_name', '')
+    headquarters = request.form.get('upd_headquarters', '')
+    establishTime = request.form.get('upd_establishTime', '')
+    notable_games = request.form.get('upd_notable_games', '')
+    notes = request.form.get('upd_notes', '')
+
+
+    publisher = {
+        "PubName": publisher_name,
+        "Headquarters": headquarters,
+        "EstablishTime": establishTime,
+        "Notable_games": notable_games,
+        "Notes": notes,
+    }
+    db_helper.update_publisher(publisher)
+    return redirect('/publisher')
+
+
+
+
 
 @app.route('/platform', methods=['GET', 'POST'])
 def platform_search():
@@ -283,6 +330,22 @@ def platform_delete():
 
     return redirect('/platform')
 
+@app.route('/platform_update', methods=['POST'])
+def platform_update():
+
+    initial = request.form.get('upd_initial', '')
+    fullName = request.form.get('upd_fullName', '')
+    manufacturer = request.form.get('upd_manufacturer', '')
+    num_JA_EU_US = request.form.get('upd_num_JA_EU_US', '')
+
+    platform = {
+        "Initial":initial,
+        "FullName": fullName,
+        "Manufacturer": manufacturer,
+        "Num_JA_EU_US": num_JA_EU_US,
+    }
+    db_helper.update_platform(platform)
+    return redirect('/platform ')
 
 @app.route('/userplatform', methods=['GET', 'POST'])
 def userplatform_search():
@@ -375,6 +438,24 @@ def play_delete():
 
     return redirect('/play')
 
+
+@app.route('/play_update', methods=['POST'])
+def play_update():
+
+    userid = request.form.get('upd_userid', '')
+    game_name = request.form.get('upd_game_name', '')
+    time_length = request.form.get('upd_time_length', '')
+    proficiency = request.form.get('upd_proficiency', '')    
+
+    play = {
+        "UserId": userid,
+        "GameName": game_name,
+        "Time_length":time_length,
+        "Proficiency":proficiency 
+    }
+
+    db_helper.update_play(play)
+    return redirect('/play')
 
 @app.route("/advquery1")
 def advquery1():

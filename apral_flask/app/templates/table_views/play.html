@@ -120,6 +120,45 @@
                     <td>{{ item['GameName'] }}</td>
                     <td>{{ item['Time_length'] }}</td>
                     <td>{{ item['Proficiency'] }}</td>
+    
+                    {#  Button Trigger Modal Insert #}
+                    <td><button type="button" class="btn btn-lg btn-outline-success" data-bs-toggle="modal" data-bs-target="#play_update{{ loop.index }}">Update Play</button></td>
+                    <!-- Modal -->
+                    <div class="modal fade" id="play_update{{ loop.index }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Update Play</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/play_update" method="post">
+                                        <div class="row">
+                                            <div class="mb-4 row">
+
+                                                <input type = "hidden" name = "upd_userid" value = "{{ item['UserId'] }}" />
+                                                <input type = "hidden" name = "upd_game_name" value = "{{ item['GameName'] }}" />
+
+
+                                                <label for="upd_time_length" class="col-sm-4 col-form-label">Time Length</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="upd_time_length" name="upd_time_length" value = "{{ item['Time_length'] }}">
+                                                </div>
+
+                                                <label for="upd_proficiency" class="col-sm-4 col-form-label">Proficiency</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="upd_proficiency" name="upd_proficiency" value = "{{ item['Proficiency'] }}">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-primary" role="button">Update</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>      
                 </tr>
             {% endfor %}
         </tbody>

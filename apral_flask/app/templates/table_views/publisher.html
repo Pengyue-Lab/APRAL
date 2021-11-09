@@ -118,6 +118,51 @@
                     <td>{{ item['EstablishTime'] }}</td>
                     <td>{{ item['Notable_games'] }}</td>
                     <td>{{ item['Notes'] }}</td>
+                    <td><button type="button" class="btn btn-lg btn-outline-success" data-bs-toggle="modal" data-bs-target="#publisher_update{{ loop.index }} ">Update Publisher</button></td>
+                    <!-- Modal -->
+                    <div class="modal fade" id="publisher_update{{ loop.index }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Update Publisher</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/publisher_update" method="post">
+                                        <div class="row">
+                                            <div class="mb-4 row">
+                
+                                                <input type = "hidden" name = "upd_publisher_name" value = "{{ item['PubName'] }}" />
+                
+                                                <label for="upd_headquarters" class="col-sm-4 col-form-label">Headquarters</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="upd_headquarters" name="upd_headquarters" value = "{{ item['Headquarters'] }}">
+                                                </div>
+                
+                                                <label for="upd_establishTime" class="col-sm-4 col-form-label">EstablishTime</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="upd_establishTime" name="upd_establishTime" value = "{{item['EstablishTime']}}">
+                                                </div>
+                                            
+                                                <label for="upd_notable_games" class="col-sm-4 col-form-label">Notable Game</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="upd_notable Games" name="upd_notable_games" value = "{{item['Notable_games']}}">
+                                                </div>
+                
+                                                <label for="upd_notes" class="col-sm-4 col-form-label">Notes</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="upd_notes" name="upd_notes" value = "{{item['Notes']}}">
+                                                </div> 
+                
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-primary" role="button">Update</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </tr>
             {% endfor %}
         </tbody>
