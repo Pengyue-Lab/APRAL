@@ -167,8 +167,9 @@
                     <td>{{ item['JP_Sales'] }}</td>
                     <td>{{ item['Global_Sales'] }}</td>                         
                     <td>{{ item['Rating'] }}</td>
-                    <td><button type="button" class="btn btn-lg btn-outline-warning" data-bs-toggle="modal" data-bs-target="#game_update{{ item.GameName }}">Update</button></td>
-                    <div class="modal fade" id="game_update{{ item.GameName }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+                    <td><button type="button" class="btn btn-lg btn-outline-warning" data-bs-toggle="modal" data-bs-target="#game_update{{ loop.index }}">Update</button></td>
+
+                    <div class="modal fade" id="game_update{{ loop.index }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -185,6 +186,56 @@
                                                 <div class="col-sm-9">
                                                     <input type="text" class="form-control" id="upd_release_year" name="upd_release_year"  value="{{ item['ReleaseYear'] }}">
                                                 </div>
+                
+                                                <label for="upd_genre" class="col-sm-4 col-form-label">Genre</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="upd_genre" name="upd_genre" value="{{ item['Genre'] }}">
+                                                </div>
+                                            
+                                                <label for="upd_dev_name" class="col-sm-4 col-form-label">Developer Name</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="upd_dev_name" name="upd_dev_name" value="{{ item['DevName'] }}">
+                                                </div>
+                
+                                                <label for="upd_pub_name" class="col-sm-4 col-form-label">Publisher Name</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="upd_pub_name" name="upd_pub_name" value="{{item['PubName']}}">
+                                                </div> 
+                
+                                                <label for="upd_user_score" class="col-sm-4 col-form-label">User Score</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="upd_user_score" name="upd_user_score" value="{{item['User_Score']}}">
+                                                </div> 
+                
+                                                <label for="upd_user_count" class="col-sm-4 col-form-label">User Count</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="upd_user_count" name="upd_user_count" value="{{item['User_Count']}}">
+                                                </div> 
+                
+                                                <label for="upd_NA_sales" class="col-sm-4 col-form-label">NA Sales</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="upd_NA_sales" name="upd_NA_sales" value="{{item['NA_Sales']}}">
+                                                </div> 
+                
+                                                <label for="upd_EU_sales" class="col-sm-4 col-form-label">EU Sales</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="upd_EU_sales" name="upd_EU_sales" value="{{item['EU_Sales']}}">
+                                                </div> 
+                
+                                                <label for="upd_JP_sales" class="col-sm-4 col-form-label">JP Sales</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="upd_JP_sales" name="upd_JP_sales" value="{{item['JP_Sales']}}">
+                                                </div> 
+                
+                                                <label for="upd_global_sales" class="col-sm-4 col-form-label">Global Sales</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="upd_global_sales" name="upd_global_sales" value="{{item['Global_Sales']}}">
+                                                </div> 
+                
+                                                <label for="upd_rating" class="col-sm-4 col-form-label">Rating</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="upd_rating" name="upd_rating" value="{{item['Rating']}}">
+                                                </div> 
                                             </div>
                                         </div>
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -199,5 +250,4 @@
         </tbody>
     </table>
 </div>
-
 {% include 'structural/footer.html' %}

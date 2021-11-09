@@ -90,6 +90,40 @@ def game_delete():
     return redirect('/game')
 
 
+@app.route('/game_update', methods=['POST'])
+def game_update():
+
+    game_name = request.form.get('upd_game_name', '')
+    release_year = request.form.get('upd_release_year', '')
+    genre= request.form.get('upd_genre', '')
+    dev_name = request.form.get('upd_dev_name', '')
+    pub_name = request.form.get('upd_pub_name', '')
+    NA_sales = request.form.get('upd_NA_sales', '')
+    EU_sales = request.form.get('upd_EU_sales', '')
+    JP_sales = request.form.get('upd_JP_sales', '')
+    Global_Sales = request.form.get('upd_global_sales', '')
+    user_score = request.form.get('upd_user_score', '')
+    user_count = request.form.get('upd_user_count', '')
+    rating = request.form.get('upd_rating', '')
+
+    game = {
+        "GameName": game_name,
+        "ReleaseYear": release_year,
+        "Genre": genre,
+        "PubName": pub_name,
+        "NA_Sales": NA_sales,
+        "EU_Sales": EU_sales,
+        "JP_Sales": JP_sales,
+        "Global_Sales": Global_Sales,
+        "User_Score": user_score,
+        "User_Count": user_count,
+        "DevName": dev_name,
+        "Rating": rating,
+    }
+    db_helper.update_game(game)
+    return redirect('/game')
+
+
 @app.route('/based', methods=['GET', 'POST'])
 def based_search():
     condition1 = request.form.get('game_name', '')
