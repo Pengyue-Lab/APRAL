@@ -167,9 +167,37 @@
                     <td>{{ item['JP_Sales'] }}</td>
                     <td>{{ item['Global_Sales'] }}</td>                         
                     <td>{{ item['Rating'] }}</td>
+                    <td><button type="button" class="btn btn-lg btn-outline-warning" data-bs-toggle="modal" data-bs-target="#game_update{{ item.GameName }}">Update</button></td>
+                    <div class="modal fade" id="game_update{{ item.GameName }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Update Game</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/game_update" method="post">
+                                        <div class="row">
+                                            <div class="mb-4 row">
+                                                <input type = "hidden" name = "upd_game_name" value = "{{ item['GameName'] }}" />
+
+                                                <label for="upd_release_year" class="col-sm-4 col-form-label">Release Year</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="upd_release_year" name="upd_release_year"  value="{{ item['ReleaseYear'] }}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-primary" role="button">Update</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
 </div>
+
 {% include 'structural/footer.html' %}
