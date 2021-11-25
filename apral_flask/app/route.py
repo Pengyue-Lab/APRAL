@@ -1,10 +1,16 @@
 """ Specifies routing for the application"""
-from sys import platform
 from flask import render_template, request, jsonify, redirect, url_for
 from app import app
 from app import database as db_helper
 
-
+GAME_OPT = 0
+DEV_OPT = 1
+PUB_OPT = 2
+PLAT_OPT = 3
+USER_OPT = 4
+UP_OPT = 5
+PLAY_OPT = 6
+BSD_OPT = 7
 
 @app.route("/edit/<int:task_id>", methods=['POST'])
 def update(task_id):
@@ -85,7 +91,7 @@ def game_insert():
 def game_delete():
 
     game_name = request.form.get('del_game_name', '')
-    db_helper.delete_game(game_name)
+    db_helper.delete_entity(game_name, GAME_OPT)
 
     return redirect('/game')
 
@@ -162,7 +168,7 @@ def based_delete():
         "GameName": game_name,
         "Initial": initial,
     }
-    db_helper.delete_based(based)
+    db_helper.delete_relationship(based, BSD_OPT)
 
     return redirect('/based')
 
@@ -204,7 +210,7 @@ def developer_insert():
 def developer_delete():
 
     developer_name = request.form.get('del_developer_name', '')
-    db_helper.delete_developer(developer_name)
+    db_helper.delete_entity(developer_name, DEV_OPT)
 
     return redirect('/developer')
 
@@ -267,7 +273,7 @@ def publisher_insert():
 def publisher_delete():
 
     publisher_name = request.form.get('del_publisher_name', '')
-    db_helper.delete_publisher(publisher_name)
+    db_helper.delete_entity(publisher_name, PUB_OPT)
 
     return redirect('/publisher')
 
@@ -326,7 +332,7 @@ def platform_insert():
 def platform_delete():
 
     platform_name = request.form.get('del_platform_name', '')
-    db_helper.delete_platform(platform_name)
+    db_helper.delete_entity(platform_name, PLAT_OPT)
 
     return redirect('/platform')
 
@@ -385,7 +391,7 @@ def userplatform_delete():
         "UserId": userid,
         "Initial": initial,
     }
-    db_helper.delete_use_platform(userplatform)
+    db_helper.delete_relationship(userplatform, UP_OPT)
 
     return redirect('/userplatform')
 
@@ -434,7 +440,7 @@ def play_delete():
         "UserId": userid,
         "GameName": game_name,
     }
-    db_helper.delete_play(play)
+    db_helper.delete_relationship(play, PLAY_OPT)
 
     return redirect('/play')
 
@@ -459,14 +465,11 @@ def play_update():
 
 @app.route("/advquery1")
 def advquery1():
-
-    items =  db_helper.show_advanced_query1()
+    items = db_helper.show_advanced_query1()
     return render_template('table_views/advquery1.html', items=items)
 
 @app.route("/advquery2")
 def advquery2():
-
-    items =  db_helper.show_advanced_query2()
+    items = db_helper.show_advanced_query2()
     return render_template('table_views/advquery2.html', items=items)
-
 

@@ -320,95 +320,35 @@ def insert_based(based):
     conn.close()
 
 
-# delete_query
-def delete_game(gamename):
-    """
-    remove game
-    Args:
-        gamename (str)
-    """
+def delete_entity(name: str, option: int):
     conn = db.connect()
-    query = 'Delete From Game where GameName="{}";'.format(gamename)
+    query = None
+    if option == 0:  # game
+        query = 'Delete From Game where GameName="{}";'.format(name)
+    elif option == 1:  # developer
+        query = 'Delete From Developer where DevName="{}";'.format(name)
+    elif option == 2:  # publisher
+        query = 'Delete From Publisher where PubName="{}";'.format(name)
+    elif option == 3:  # platform
+        query = 'Delete From Platform where Initial="{}";'.format(name)
+    elif option == 4:  # user
+        query = 'Delete from User where UserId = "{}";'.format(name)
     conn.execute(query)
     conn.close()
 
 
-def delete_developer(devname):
-    """
-    remove developer
-    Args:
-        devname (str)
-    """
+def delete_relationship(obj, option):
     conn = db.connect()
-    query = 'Delete From Developer where DevName="{}";'.format(devname)
-    conn.execute(query)
-    conn.close()
-
-
-def delete_publisher(pubname):
-    """
-    remove publisher
-    Args:
-        pubname (str)
-    """
-    conn = db.connect()
-    query = 'Delete From Publisher where PubName="{}";'.format(pubname)
-    conn.execute(query)
-    conn.close()
-
-
-def delete_platform(initial):
-    """ remove platform 
-    Args:
-        initial (str)
-    """
-    conn = db.connect()
-    query = 'Delete From Platform where Initial="{}";'.format(initial)
-    conn.execute(query)
-    conn.close()
-
-
-def delete_user(userId):
-    """ remove user 
-    Args:
-        userId (str)
-    """
-    conn = db.connect()
-    query = 'Delete from User where UserId = "{}";'.format(userId)
-    conn.execute(query)
-    conn.close()
-
-
-def delete_use_platform(useplatform):
-    """ remove useplatform
-    Args:
-        usePlatform (dic)
-    """
-    conn = db.connect()
-    query = 'Delete from UsePlatform where UserId = "{}" and Initial = "{}";'.format(useplatform['UserId'],useplatform['Initial'])
-    conn.execute(query)
-    conn.close()
-
-
-def delete_play(play):
-    """ remove play
-    Args:
-        play (dict)
-    """
-    conn = db.connect()
-    query = 'Delete from Play where UserId = "{}" and GameName = "{}" ;'.format(play['UserId'],play['GameName'])
-    conn.execute(query)
-    conn.close()
-
-
-def delete_based(based):
-    """
-    remove based
-    Args:
-        based (dic)
-    """
-    conn = db.connect()
-    query = 'Delete From Based where GameName="{}" and Initial="{}";'.format(based['GameName'],based['Initial'])
+    query = None
+    if option == 5:  # use platform
+        query = 'Delete from UsePlatform where UserId = "{}" and Initial = "{}";'\
+            .format(obj['UserId'], obj['Initial'])
+    elif option == 6:  # play
+        query = 'Delete from Play where UserId = "{}" and GameName = "{}" ;'\
+            .format(obj['UserId'], obj['GameName'])
+    elif option == 7:  # based
+        query = 'Delete From Based where GameName="{}" and Initial="{}";'\
+            .format(obj['GameName'], obj['Initial'])
     conn.execute(query)
     conn.close()
 
