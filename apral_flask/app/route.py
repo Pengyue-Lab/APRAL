@@ -49,7 +49,7 @@ def game_search():
     condition = request.form.get('game_name', '')
     if condition != '':
         condition = 'WHERE GameName="' + condition + '"'
-    items = db_helper.show_game(condition)
+    items = db_helper.show(GAME_OPT, condition=condition)
     return render_template('table_views/game.html', items=items)
 
 
@@ -142,7 +142,7 @@ def based_search():
         condition = 'WHERE GameName="' + condition1 + '"' + ' AND Initial="' + condition2 + '"'
     elif condition1 == '' and condition2 == '':
         condition = ''
-    items = db_helper.show_based(condition)
+    items = db_helper.show(BSD_OPT, condition=condition)
     return render_template('table_views/based.html', items=items)
 
 
@@ -178,7 +178,7 @@ def developer_search():
     condition = request.form.get('developer_name', '')
     if condition != '':
         condition = 'WHERE DevName="' + condition + '"'
-    items = db_helper.show_developer(condition)
+    items = db_helper.show(DEV_OPT, condition=condition)
     return render_template('table_views/developer.html', items=items)
 
 
@@ -244,7 +244,7 @@ def publisher_search():
     condition = request.form.get('publisher_name', '')
     if condition != '':
         condition = 'WHERE PubName="' + condition + '"'
-    items = db_helper.show_publisher(condition)
+    items = db_helper.show(PUB_OPT, condition=condition)
     return render_template('table_views/publisher.html', items=items)
 
 
@@ -306,7 +306,7 @@ def platform_search():
     condition = request.form.get('platform_name', '')
     if condition != '':
         condition = 'WHERE Initial="' + condition + '"'
-    items = db_helper.show_platform(condition)
+    items = db_helper.show(PLAT_OPT, condition=condition)
     return render_template('table_views/platform.html', items=items)
 
 
@@ -365,7 +365,7 @@ def userplatform_search():
         condition = 'WHERE UserId="' + condition1 + '"' + ' AND Initial="' + condition2 + '"'
     elif condition1 == '' and condition2 == '':
         condition = ''
-    items = db_helper.show_use_platform(condition)
+    items = db_helper.show(UP_OPT, condition=condition)
     return render_template('table_views/userplatform.html', items=items)
 
 
@@ -408,7 +408,7 @@ def play_search():
         condition = 'WHERE UserId="' + condition1 + '"' + ' AND GameName="' + condition2 + '"'
     elif condition1 == '' and condition2 == '':
         condition = ''
-    items = db_helper.show_play(condition)
+    items = db_helper.show(PLAY_OPT, condition=condition)
     return render_template('table_views/play.html', items=items)
 
 

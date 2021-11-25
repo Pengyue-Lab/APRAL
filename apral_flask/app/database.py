@@ -1,186 +1,110 @@
 """Defines all the functions related to the database"""
 from app import db
 
+GAME_OPT = 0
+DEV_OPT = 1
+PUB_OPT = 2
+PLAT_OPT = 3
+USER_OPT = 4
+UP_OPT = 5
+PLAY_OPT = 6
+BSD_OPT = 7
 
-# search_query
-def show_game(condition=''):
-    """
-    Reads selected Games
-    Returns:
-        A list of dictionaries
-    """
+
+def show(option, condition=''):
     conn = db.connect()
-    query_results = conn.execute("SELECT * FROM Game " + condition + ";").fetchall()
+    query_str = None
+    if option == GAME_OPT:
+        query_str = "SELECT * FROM Game " + condition + ";"
+    elif option == DEV_OPT:
+        query_str = "Select * from Developer " + condition + ";"
+    elif option == PUB_OPT:
+        query_str = "Select * from Publisher " + condition + ";"
+    elif option == PLAT_OPT:
+        query_str = "Select * from Platform " + condition + ";"
+    elif option == USER_OPT:
+        query_str = "Select * from User " + condition + ";"
+    elif option == UP_OPT:
+        query_str = "Select * from UsePlatform " + condition + ";"
+    elif option == PLAY_OPT:
+        query_str = "Select * from Play " + condition + ";"
+    elif option == BSD_OPT:
+        query_str = "Select * from Based " + condition + ";"
+    query_results = conn.execute(query_str).fetchall()
     conn.close()
-    game_list = []
+    return_list = []
     for result in query_results:
-        item = {
-            "GameName": result[0],
-            "ReleaseYear": result[1],
-            "Genre": result[2],
-            "PubName": result[3],
-            "NA_Sales": result[4],
-            "EU_Sales": result[5],
-            "JP_Sales": result[6],
-            "Global_Sales": result[7],
-            "User_Score": result[8],
-            "User_Count": result[9],
-            "DevName": result[10],
-            "Rating": result[11],
-        }
-        game_list.append(item)
-    return game_list
-
-
-def show_developer(condition=''):
-    """Reads selected Developers
-
-    Returns:
-        A list of dictionaries
-    """
-    conn = db.connect()
-    query_results = conn.execute("Select * from Developer " + condition + ";").fetchall()
-    conn.close()
-    developer_list = []
-    for result in query_results:
-        item = {
-            "DevName": result[0],
-            "Active": result[1],
-            "City": result[2],
-            "Country": result[3],
-            "EstablishTime": result[4],
-            "Notable_games": result[5],
-            "Notes": result[6],
-        }
-        developer_list.append(item)
-    return developer_list
-
-
-def show_publisher(condition=''):
-    """Reads all Publishers
-
-    Returns:
-        A list of dictionaries
-    """
-    conn = db.connect()
-    query_results = conn.execute("Select * from Publisher " + condition + ";").fetchall()
-    conn.close()
-    publisher_list = []
-    for result in query_results:
-        item = {
-            "PubName": result[0],
-            "Headquarters": result[1],
-            "EstablishTime": result[2],
-            "Notable_games": result[3],
-            "Notes": result[4],
-        }
-        publisher_list.append(item)
-    return publisher_list
-
-
-def show_platform(condition=''):
-    """Reads all Platforms
-
-    Returns:
-        A list of dictionaries
-    """
-    conn = db.connect()
-    query_results = conn.execute("Select * from Platform " + condition + ";").fetchall()
-    conn.close()
-    platform_list = []
-    for result in query_results:
-        item = {
-            "Initial": result[0],
-            "FullName": result[1],
-            "Manufacturer": result[2],
-            "Num_JA_EU_US": result[3],
-        }
-        platform_list.append(item)
-    return platform_list
-
-
-def show_user():
-    """Reads all Users
-
-    Returns:
-        A list of dictionaries
-    """
-    conn = db.connect()
-    query_results = conn.execute("Select * from User;").fetchall()
-    conn.close()
-    user_list = []
-    for result in query_results:
-        item = {
-            "UserId": result[0],
-            "Full_name": result[1],
-            "First_name": result[2],
-            "Last_name": result[3],
-            "Gender": result[4],
-            "Age": result[5],
-            "Preference": result[6],
-            "Password": result[7],
-        }
-        user_list.append(item)
-    return user_list
-
-
-def show_use_platform(condition=''):
-    """Reads all UsePlatform
-
-    Returns:
-        A list of dictionaries
-    """
-    conn = db.connect()
-    query_results = conn.execute("Select * from UsePlatform " + condition + ";").fetchall()
-    conn.close()
-    user_platform_list = []
-    for result in query_results:
-        item = {
-            "UserId": result[0],
-            "Initial": result[1],
-        }
-        user_platform_list.append(item)
-    return user_platform_list
-
-
-def show_play(condition=''):
-    """Reads all UsePlatform
-
-    Returns:
-        A list of dictionaries
-    """
-    conn = db.connect()
-    query_results = conn.execute("Select * from Play " + condition + ";").fetchall()
-    conn.close()
-    play_list = []
-    for result in query_results:
-        item = {
-            "UserId": result[0],
-            "GameName": result[1],
-            "Time_length": result[2],
-            "Proficiency": result[3],
-        }
-        play_list.append(item)
-    return play_list
-
-
-def show_based(condition=''):
-    """Reads all Based
-
-    Returns:
-        A list of dictionaries
-    """
-    conn = db.connect()
-    query_results = conn.execute("Select * from Based " + condition + ";").fetchall()
-    conn.close()
-    based_list = []
-    for result in query_results:
-        item = {
-            "GameName": result[0],
-            "Initial": result[1],
-        }
-        based_list.append(item)
-    return based_list
+        item = None
+        if option == GAME_OPT:
+            item = {
+                "GameName": result[0],
+                "ReleaseYear": result[1],
+                "Genre": result[2],
+                "PubName": result[3],
+                "NA_Sales": result[4],
+                "EU_Sales": result[5],
+                "JP_Sales": result[6],
+                "Global_Sales": result[7],
+                "User_Score": result[8],
+                "User_Count": result[9],
+                "DevName": result[10],
+                "Rating": result[11],
+            }
+        elif option == DEV_OPT:
+            item = {
+                "DevName": result[0],
+                "Active": result[1],
+                "City": result[2],
+                "Country": result[3],
+                "EstablishTime": result[4],
+                "Notable_games": result[5],
+                "Notes": result[6],
+            }
+        elif option == PUB_OPT:
+            item = {
+                "PubName": result[0],
+                "Headquarters": result[1],
+                "EstablishTime": result[2],
+                "Notable_games": result[3],
+                "Notes": result[4],
+            }
+        elif option == PLAT_OPT:
+            item = {
+                "Initial": result[0],
+                "FullName": result[1],
+                "Manufacturer": result[2],
+                "Num_JA_EU_US": result[3],
+            }
+        elif option == USER_OPT:
+            item = {
+                "UserId": result[0],
+                "Full_name": result[1],
+                "First_name": result[2],
+                "Last_name": result[3],
+                "Gender": result[4],
+                "Age": result[5],
+                "Preference": result[6],
+                "Password": result[7],
+            }
+        elif option == UP_OPT:
+            item = {
+                "UserId": result[0],
+                "Initial": result[1],
+            }
+        elif option == PLAY_OPT:
+            item = {
+                "UserId": result[0],
+                "GameName": result[1],
+                "Time_length": result[2],
+                "Proficiency": result[3],
+            }
+        elif option == BSD_OPT:
+            item = {
+                "GameName": result[0],
+                "Initial": result[1],
+            }
+        return_list.append(item)
+    return return_list
 
 
 def show_advanced_query2():
@@ -323,15 +247,15 @@ def insert_based(based):
 def delete_entity(name: str, option: int):
     conn = db.connect()
     query = None
-    if option == 0:  # game
+    if option == GAME_OPT:  # game
         query = 'Delete From Game where GameName="{}";'.format(name)
-    elif option == 1:  # developer
+    elif option == DEV_OPT:  # developer
         query = 'Delete From Developer where DevName="{}";'.format(name)
-    elif option == 2:  # publisher
+    elif option == PUB_OPT:  # publisher
         query = 'Delete From Publisher where PubName="{}";'.format(name)
-    elif option == 3:  # platform
+    elif option == PLAT_OPT:  # platform
         query = 'Delete From Platform where Initial="{}";'.format(name)
-    elif option == 4:  # user
+    elif option == USER_OPT:  # user
         query = 'Delete from User where UserId = "{}";'.format(name)
     conn.execute(query)
     conn.close()
@@ -340,13 +264,13 @@ def delete_entity(name: str, option: int):
 def delete_relationship(obj, option):
     conn = db.connect()
     query = None
-    if option == 5:  # use platform
+    if option == UP_OPT:  # use platform
         query = 'Delete from UsePlatform where UserId = "{}" and Initial = "{}";'\
             .format(obj['UserId'], obj['Initial'])
-    elif option == 6:  # play
+    elif option == PLAY_OPT:  # play
         query = 'Delete from Play where UserId = "{}" and GameName = "{}" ;'\
             .format(obj['UserId'], obj['GameName'])
-    elif option == 7:  # based
+    elif option == BSD_OPT:  # based
         query = 'Delete From Based where GameName="{}" and Initial="{}";'\
             .format(obj['GameName'], obj['Initial'])
     conn.execute(query)
