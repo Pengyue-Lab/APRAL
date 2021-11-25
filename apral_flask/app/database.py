@@ -9,6 +9,10 @@ USER_OPT = 4
 UP_OPT = 5
 PLAY_OPT = 6
 BSD_OPT = 7
+INSERT_OPT = 0
+DELETE_OPT = 1
+UPDATE_OPT = 2
+SHOW_OPT = 3
 
 
 def show(option, condition=''):
@@ -146,100 +150,77 @@ def show_advanced_query1():
     return result_list
 
 
-# insert_query
-def insert_game(game):
-    """
-    Insert new game
-    Args:
-        game (dic): game
-    """
-
+def insert(obj, option):
     conn = db.connect()
-    query = 'Insert into Game values("{}",{},"{}","{}",{},{},{},{},{},{},"{}","{}");'.format(game['GameName'],game['ReleaseYear'],game['Genre'],game['PubName'],game['NA_Sales'],game['EU_Sales'],game['JP_Sales'],game['Global_Sales'],game['User_Score'],game['User_Count'],game['DevName'],game['Rating'])
-    conn.execute(query)
-    conn.close()
-
-
-def insert_developer(developer):
-    """
-    Insert new developer
-    Args:
-        developer (dic)
-    """
-    conn = db.connect()
-    query = 'Insert into Developer values("{}",{},"{}","{}",{},"{}","{}");'.format(developer['DevName'],developer['Active'],developer['City'],developer['Country'],developer['EstablishTime'],developer['Notable_games'],developer['Notes'])
-    conn.execute(query)
-    conn.close()
-
-
-def insert_publisher(publisher):
-    """
-    Insert new publisher
-    Args:
-        publisher (dic)
-    """
-    conn = db.connect()
-    query = 'Insert into Publisher values("{}","{}",{},"{}","{}");'.format(publisher['PubName'],publisher['Headquarters'],publisher['EstablishTime'],publisher['Notable_games'],publisher['Notes'])
-    conn.execute(query)
-    conn.close()
-
-
-def insert_platform(platform):
-    """
-    Insert new platform
-    Args:
-        platform (dic)
-    """
-    conn = db.connect()
-    query = 'Insert into Platform values("{}","{}","{}",{});'.format(platform['Initial'],platform['FullName'],platform['Manufacturer'],platform['Num_JA_EU_US'])
-    conn.execute(query)
-    conn.close()
-
-
-def insert_user(user):
-    """
-    Insert new user
-    Args:
-        user (dic)
-    """
-    conn = db.connect()
-    query = 'Insert into User values("{}","{}","{}","{}","{}",{},"{}","{}");'.format(user['UserId'],user['Full_name'],user['First_name'],user['Last_name'],user['Gender'],user['Age'],user['Preference'],user['Password'])
-    conn.execute(query)
-    conn.close()
-
-
-def insert_use_platform(useplatform):
-    """
-    Insert new usePlatform
-    Args:
-        usePlatform (dic)
-    """
-    conn = db.connect()
-    query = 'Insert into UsePlatform values("{}","{}");'.format(useplatform['UserId'],useplatform['Initial'])
-    conn.execute(query)
-    conn.close()
-
-
-def insert_play(play):
-    """Insert new play
-
-    Args:
-        play (dic)
-    """
-    conn = db.connect()
-    query = 'Insert into Play values("{}","{}",{},"{}");'.format(play['UserId'],play['GameName'],play['Time_length'],play['Proficiency'])
-    conn.execute(query)
-    conn.close()
-
-
-def insert_based(based):
-    """
-    Insert new based
-    Args:
-        based (dic)
-    """
-    conn = db.connect()
-    query = 'Insert into Based values("{}","{}");'.format(based['GameName'], based['Initial'])
+    query = None
+    if option == GAME_OPT:
+        query = 'Insert into Game values("{}",{},"{}","{}",{},{},{},{},{},{},"{}","{}");'.format(
+            obj['GameName'],
+            obj['ReleaseYear'],
+            obj['Genre'],
+            obj['PubName'],
+            obj['NA_Sales'],
+            obj['EU_Sales'],
+            obj['JP_Sales'],
+            obj['Global_Sales'],
+            obj['User_Score'],
+            obj['User_Count'],
+            obj['DevName'],
+            obj['Rating']
+        )
+    elif option == DEV_OPT:
+        query = 'Insert into Developer values("{}",{},"{}","{}",{},"{}","{}");'.format(
+            obj['DevName'],
+            obj['Active'],
+            obj['City'],
+            obj['Country'],
+            obj['EstablishTime'],
+            obj['Notable_games'],
+            obj['Notes']
+        )
+    elif option == PUB_OPT:
+        query = 'Insert into Publisher values("{}","{}",{},"{}","{}");'.format(
+            obj['PubName'],
+            obj['Headquarters'],
+            obj['EstablishTime'],
+            obj['Notable_games'],
+            obj['Notes']
+        )
+    elif option == PLAT_OPT:
+        query = 'Insert into Platform values("{}","{}","{}",{});'.format(
+            obj['Initial'],
+            obj['FullName'],
+            obj['Manufacturer'],
+            obj['Num_JA_EU_US']
+        )
+    elif option == USER_OPT:
+        query = 'Insert into User values("{}","{}","{}","{}","{}",{},"{}","{}");'.format(
+            obj['UserId'],
+            obj['Full_name'],
+            obj['First_name'],
+            obj['Last_name'],
+            obj['Gender'],
+            obj['Age'],
+            obj['Preference'],
+            obj['Password']
+        )
+    elif option == UP_OPT:
+        query = 'Insert into UsePlatform values("{}","{}");'.format(
+            obj['UserId'],
+            obj['Initial']
+        )
+    elif option == PLAY_OPT:
+        query = 'Insert into Play values("{}","{}",{},"{}");'.format(
+            obj['UserId'],
+            obj['GameName'],
+            obj['Time_length'],
+            obj['Proficiency']
+        )
+    elif option == BSD_OPT:
+        query = 'Insert into Based values("{}","{}");'.format(
+            obj['GameName'],
+            obj['Initial']
+        )
     conn.execute(query)
     conn.close()
 

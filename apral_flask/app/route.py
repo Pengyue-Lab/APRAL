@@ -83,7 +83,7 @@ def game_insert():
         "DevName": dev_name,
         "Rating": rating,
     }
-    db_helper.insert_game(game)
+    db_helper.insert(game, GAME_OPT)
     return redirect('/game')
 
 
@@ -155,7 +155,7 @@ def based_insert():
         "GameName": game_name,
         "Initial": initial,
     }
-    db_helper.insert_based(game)
+    db_helper.insert(game, BSD_OPT)
     return redirect('/based')
 
 
@@ -202,7 +202,7 @@ def developer_insert():
         "Notable_games": notable_games,
         "Notes": notes,
     }
-    db_helper.insert_developer(developer)
+    db_helper.insert(developer, DEV_OPT)
     return redirect('/developer')
 
 
@@ -265,7 +265,7 @@ def publisher_insert():
         "Notable_games": notable_games,
         "Notes": notes,
     }
-    db_helper.insert_publisher(publisher)
+    db_helper.insert(publisher, PUB_OPT)
     return redirect('/publisher')
 
 
@@ -324,7 +324,7 @@ def platform_insert():
         "Manufacturer": manufacturer,
         "Num_JA_EU_US": num_JA_EU_US,
     }
-    db_helper.insert_platform(platform)
+    db_helper.insert(platform, PLAT_OPT)
     return redirect('/platform ')
 
 
@@ -378,7 +378,7 @@ def userplatform_insert():
         "UserId": userid,
         "Initial": initial,
     }
-    db_helper.insert_use_platform(userplatform)
+    db_helper.insert(userplatform, UP_OPT)
     return redirect('/userplatform')
 
 
@@ -427,7 +427,7 @@ def play_insert():
         "Proficiency":proficiency 
     }
 
-    db_helper.insert_play(play)
+    db_helper.insert(play, PLAY_OPT)
     return redirect('/play')
 
 
