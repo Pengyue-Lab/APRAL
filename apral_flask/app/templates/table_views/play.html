@@ -122,7 +122,7 @@
                     <td>{{ item['Proficiency'] }}</td>
     
                     {#  Button Trigger Modal Insert #}
-                    <td><button type="button" class="btn btn-lg btn-outline-warning" data-bs-toggle="modal" data-bs-target="#play_update{{ loop.index }}">Update Play</button></td>
+                    <td><button type="button" class="btn btn-lg btn-outline-warning" data-bs-toggle="modal" data-bs-target="#play_update{{ loop.index }}">Update</button></td>
                     <!-- Modal -->
                     <div class="modal fade" id="play_update{{ loop.index }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog">
@@ -138,16 +138,11 @@
 
                                                 <input type = "hidden" name = "upd_userid" value = "{{ item['UserId'] }}" />
                                                 <input type = "hidden" name = "upd_game_name" value = "{{ item['GameName'] }}" />
-
+                                                <input type = "hidden" name = "upd_proficiency" value = "{{ item['Proficiency'] }}" />
 
                                                 <label for="upd_time_length" class="col-sm-4 col-form-label">Time Length</label>
                                                 <div class="col-sm-9">
                                                     <input type="text" class="form-control" id="upd_time_length" name="upd_time_length" value = "{{ item['Time_length'] }}">
-                                                </div>
-
-                                                <label for="upd_proficiency" class="col-sm-4 col-form-label">Proficiency</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control" id="upd_proficiency" name="upd_proficiency" value = "{{ item['Proficiency'] }}">
                                                 </div>
 
                                             </div>
