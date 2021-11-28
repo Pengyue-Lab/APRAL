@@ -1,5 +1,8 @@
 runtime: python38
 
+instance_class: F1
+
+
 env_variables:
   MYSQL_USER: 'root'
   MYSQL_PASSWORD: 'cs411-pt1-apral'
