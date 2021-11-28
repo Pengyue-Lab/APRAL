@@ -4,7 +4,6 @@ import sqlalchemy
 from flask import Flask
 from yaml import load, Loader
 
-app = Flask(__name__)
 def init_connection_engine():
     """ initialize database setup
     Takes in os variables from environment if on GCP
@@ -37,6 +36,8 @@ def init_connection_engine():
 
     return pool
 
+
+app = Flask(__name__)
 db = init_connection_engine()
 
 # To prevent from using a blueprint, we use a cyclic import
