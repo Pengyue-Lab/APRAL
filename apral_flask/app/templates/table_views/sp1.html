@@ -4,7 +4,23 @@
 
 <!-- Show table -->
 <div class="container">
-    <h1>Select the top 8 popluar Developer among female or the top 7 popular Publisher among female.</h1>
+    <h1>Show Top 5 Developer and Top 5 Publisher By Gender</h1>
+    <form class="mb-3" action="/sp1" method="post">
+        <div class="row">
+            <div class="mb-3 row">
+                <label for="gender_label" class="col-sm-2 col-form-label">Gender</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="gender" name="gender">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <button class="btn btn-lg btn-primary">Advanced Search</button>
+            </div>
+        </div>
+    </form>
+
+
+
     <table class="table">
         <thead>
         <tr>

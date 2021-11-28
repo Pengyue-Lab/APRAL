@@ -1,0 +1,55 @@
+{% include 'structural/header.html' %}
+<body>
+{% include 'structural/nav.html' %}
+
+<!-- Show table -->
+<div class="container">
+    <h1>Compare Two Manufacturers Above Specific User Score</h1>
+    <form class="mb-3" action="/sp2" method="post">
+        <div class="row">
+            <div class="mb-3 row">
+                <label for="score_label" class="col-sm-2 col-form-label">Score</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="score" name="score">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="manu1_label" class="col-sm-2 col-form-label">Manufacturer1</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="manu1" name="manu1">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="manu2_label" class="col-sm-2 col-form-label">Manufacturer2</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="manu2" name="manu2">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <button class="btn btn-lg btn-primary">Advanced Search</button>
+            </div>
+        </div>
+    </form>
+
+
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Game Name</th>
+            <th scope="col">Manufacturer</th>
+            <th scope="col">User Score</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item['GameName'] }}</td>
+                    <td>{{ item['Manufacturer'] }}</td>
+                    <td>{{ item['User_Score'] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% include 'structural/footer.html' %}

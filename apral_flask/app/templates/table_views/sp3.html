@@ -4,21 +4,21 @@
 
 <!-- Show table -->
 <div class="container">
-    <h1>Select Game whose User_Score > 8 and manufacturer is Sony or Game whose Use_Score < 7 and manufacturer is Microsoft.</h1>
+    <h1>Show Top 5 Manufacturers' Average User Score And Status</h1>
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">Game Name</th>
             <th scope="col">Manufacturer</th>
-            <th scope="col">User Score</th>
+            <th scope="col">Average User Score</th>
+            <th scope="col">Status</th>
         </tr>
         </thead>
         <tbody>
             {% for item in items %}
                 <tr>
-                    <td>{{ item['GameName'] }}</td>
                     <td>{{ item['Manufacturer'] }}</td>
-                    <td>{{ item['User_Score'] }}</td>
+                    <td>{{ item['Avg_Score'] }}</td>
+                    <td>{{ item['ManuStatus'] }}</td>
                 </tr>
             {% endfor %}
         </tbody>

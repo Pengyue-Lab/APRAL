@@ -111,34 +111,43 @@ def show(option, condition=''):
     return return_list
 
 
-def show_advanced_query2():
-    """Reads Select Game whose User_Score>8 and manufacturer is Sony or Game whose Use_Score<7 and manufacturer is Microsoft.
-
-    Returns:
-        A list of dictionaries
-    """
+def show_stored_procedure3():
     conn = db.connect()
-    query_results = conn.execute("(Select GameName,Manufacturer,User_Score From Game natural join Based natural join Platform where User_Score>8 and Manufacturer = 'Sony')Union(Select GameName,Manufacturer,User_Score From Game natural join Based natural join Platform where User_Score<7 and Manufacturer = 'Microsoft')order by User_Score desc").fetchall()
+    query_results = conn.execute("call Result (3, '',0,'','');").fetchall()
     conn.close()
+    result_list = []
+    for result in query_results:
+        item = {
+            "Manufacturer": result[0],
+            "Avg_Score": result[1],
+            "ManuStatus": result[2]
+        }
+        result_list.append(item)
+    return result_list
+
+def show_stored_procedure2(score,manu1,manu2):
+    conn = db.connect()
+    query = 'call Result (2," ",{},"{}","{}");'.format(score,manu1,manu2)
+    query_results = conn.execute(query).fetchall()
     result_list = []
     for result in query_results:
         item = {
             "GameName": result[0],
             "Manufacturer": result[1],
-            "User_Score": result[2],
+            "User_Score": result[2]
         }
         result_list.append(item)
     return result_list
 
 
-def show_advanced_query1():
-    """Select the top 8 popluar Developer among female or the top 7 popular Publisher among female.
 
-    Returns:
-        A list of dictionaries
-    """
+
+
+def show_stored_procedure1(gender):
+    
     conn = db.connect()
-    query_results = conn.execute("(Select DevName as Name,count(*) as Num From Game natural join Play natural join User where Gender = 'FeMale' Group by DevName order by Num desc limit 8)union(Select PubName as Name,count(*) as Num From Game natural join Play natural join User where Gender = 'FeMale' Group by PubName order by Num desc limit 7)").fetchall()
+    query = 'call Result (1, "{}",0," "," ");'.format(gender)
+    query_results = conn.execute(query).fetchall()
     conn.close()
     result_list = []
     for result in query_results:

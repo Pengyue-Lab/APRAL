@@ -442,13 +442,22 @@ def play_update():
     db_helper.update_play(play)
     return redirect('/play')
 
-@app.route("/advquery1")
-def advquery1():
-    items = db_helper.show_advanced_query1()
-    return render_template('table_views/advquery1.html', items=items)
+@app.route("/sp1",methods=['GET', 'POST'])
+def sp1():
+    gender = request.form.get('gender', '')
+    items = db_helper.show_stored_procedure1(gender)
+    return render_template('table_views/sp1.html', items=items)
 
-@app.route("/advquery2")
-def advquery2():
-    items = db_helper.show_advanced_query2()
-    return render_template('table_views/advquery2.html', items=items)
+@app.route("/sp2",methods=['GET', 'POST'])
+def sp2():
+    score = request.form.get('score', 0)
+    manu1 = request.form.get('manu1', '')
+    manu2 = request.form.get('manu2', '')
+    items = db_helper.show_stored_procedure2(score,manu1,manu2)
+    return render_template('table_views/sp2.html', items=items)
+
+@app.route("/sp3")
+def sp3():
+    items = db_helper.show_stored_procedure3()
+    return render_template('table_views/sp3.html', items=items)
 
